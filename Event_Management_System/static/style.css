@@ -1,0 +1,25 @@
+body{background:#f4f7fb;color:#172033;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+.navbar{background:#101827}
+.navbar-brand{letter-spacing:.2px}
+.hero{background:linear-gradient(135deg,#101827,#243b64);color:white;border-radius:18px;padding:36px}
+.hero h1{font-size:clamp(28px,4vw,44px);max-width:850px}
+.hero p{opacity:.8;font-size:17px}
+.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;opacity:.7;margin-bottom:8px}
+.card{border:0;border-radius:16px;box-shadow:0 5px 25px rgba(20,35,60,.07)}
+.stat-card{padding:22px}
+.stat{font-size:32px;font-weight:800;margin-top:4px}
+.icon{font-size:24px;margin-bottom:12px}
+.section-title{display:flex;align-items:center;justify-content:space-between}
+.section-title h1{font-weight:800;margin:0}
+.section-title h4{margin:0}
+.section-title a{text-decoration:none;font-weight:600}
+.event-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid #edf0f5}
+.event-row:last-child{border-bottom:0}
+.muted,.text-muted{color:#6d7788!important}
+.badge-soft{background:#edf3ff;color:#2857a4;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.resource-icon{font-size:28px;margin-bottom:10px}
+label{font-size:13px;font-weight:700;margin-bottom:6px}
+.table th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:#6d7788}
+.progress{height:8px;background:#e9edf3}
+.progress-bar{background:#315dbb}
+.btn-primary{background:#315dbb;border-color:#315dbb}

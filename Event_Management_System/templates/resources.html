@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-title mb-3"><div><div class="eyebrow">CAMPUS ASSETS</div><h1>Resources</h1></div></div>
+<div class="card p-4 mb-4">
+<h4>Add Resource</h4>
+<form method="post" action="{{ url_for('add_resource') }}" class="row g-3">
+<div class="col-md-4"><label>Name</label><input name="name" class="form-control" required></div>
+<div class="col-md-3"><label>Type</label><select name="resource_type" class="form-select"><option>Auditorium</option><option>Seminar Hall</option><option>Lab</option><option>Meeting Room</option><option>Stage</option></select></div>
+<div class="col-md-2"><label>Capacity</label><input type="number" name="capacity" class="form-control" min="1" required></div>
+<div class="col-md-3"><label>Location</label><input name="location" class="form-control" required></div>
+<div class="col-md-12"><button class="btn btn-primary">Add Resource</button></div>
+</form>
+</div>
+<div class="row g-3">{% for r in resources %}
+<div class="col-md-4"><div class="card p-4 h-100"><div class="resource-icon">🏫</div><h4>{{r.name}}</h4><p class="muted">{{r.resource_type}} · {{r.location}}</p><div class="d-flex justify-content-between"><span>Capacity</span><b>{{r.capacity}}</b></div><div class="d-flex justify-content-between"><span>Bookings</span><b>{{r.bookings}}</b></div><div class="d-flex justify-content-between"><span>Attendance</span><b>{{r.total_attendance}}</b></div></div></div>
+{% endfor %}</div>
+{% endblock %}

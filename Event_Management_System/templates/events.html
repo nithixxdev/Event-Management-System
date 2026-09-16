@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-title mb-3"><div><div class="eyebrow">EVENT OPERATIONS</div><h1>Events</h1></div></div>
+<div class="card p-4 mb-4">
+<h4>Add Event</h4>
+<form method="post" action="{{ url_for('add_event') }}" class="row g-3">
+<div class="col-md-6"><label>Title</label><input name="title" class="form-control" required></div>
+<div class="col-md-3"><label>Type</label><select name="event_type" class="form-select"><option>Technical</option><option>Workshop</option><option>Competition</option><option>Seminar</option><option>Cultural</option></select></div>
+<div class="col-md-3"><label>Organizer</label><input name="organizer" class="form-control" required></div>
+<div class="col-md-3"><label>Date</label><input type="date" name="event_date" class="form-control" required></div>
+<div class="col-md-2"><label>Start</label><input type="time" name="start_time" class="form-control" required></div>
+<div class="col-md-2"><label>End</label><input type="time" name="end_time" class="form-control" required></div>
+<div class="col-md-3"><label>Venue</label><select name="resource_id" class="form-select"><option value="">Select</option>{% for r in resources %}<option value="{{r.id}}">{{r.name}}</option>{% endfor %}</select></div>
+<div class="col-md-2"><label>Expected</label><input type="number" name="expected_attendance" class="form-control" min="0" required></div>
+<div class="col-md-12"><button class="btn btn-primary">Add Event</button></div>
+</form>
+</div>
+
+<div class="card p-4">
+<h4 class="mb-3">Event Records</h4>
+<div class="table-responsive"><table class="table align-middle">
+<thead><tr><th>Event</th><th>Type</th><th>Date</th><th>Venue</th><th>Expected</th><th>Attendance</th><th>Registrations</th></tr></thead>
+<tbody>{% for e in events %}
+<tr><td><strong>{{e.title}}</strong><br><span class="muted">{{e.organizer}}</span></td><td>{{e.event_type}}</td><td>{{e.event_date}}</td><td>{{e.resource_name or '-'}}</td><td>{{e.expected_attendance}}</td><td>{{e.attendance}}</td><td>{{e.registrations}}</td></tr>
+{% endfor %}</tbody></table></div>
+</div>
+{% endblock %}

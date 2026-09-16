@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-title mb-4"><div><div class="eyebrow">INTELLIGENCE CENTER</div><h1>Analytics</h1><p class="muted">Turn campus activity into decisions.</p></div></div>
+
+<div class="row g-4 mb-4">
+<div class="col-lg-6"><div class="card p-4"><h4>Monthly Attendance</h4>
+{% for x in attendance %}
+<div class="mb-3"><div class="d-flex justify-content-between"><span>{{x.month}}</span><span>{{x.attendance}} / {{x.expected}}</span></div>
+<div class="progress"><div class="progress-bar" style="width: {{ [x.attendance / ([x.expected,1] | max) * 100, 100] | min }}%"></div></div></div>
+{% endfor %}
+</div></div>
+<div class="col-lg-6"><div class="card p-4"><h4>Resource Utilization</h4>
+{% for x in utilization %}
+<div class="mb-3"><div class="d-flex justify-content-between"><span>{{x.name}}</span><b>{{x.utilization}}%</b></div>
+<div class="progress"><div class="progress-bar" style="width: {{ [x.utilization,100] | min }}%"></div></div></div>
+{% endfor %}
+</div></div>
+</div>
+
+<div class="card p-4 mb-4"><h4>Top Events</h4>
+<div class="table-responsive"><table class="table"><thead><tr><th>Event</th><th>Type</th><th>Attendance</th><th>Expected</th><th>Fill Rate</th></tr></thead>
+<tbody>{% for x in top_events %}<tr><td>{{x.title}}</td><td>{{x.event_type}}</td><td>{{x.attendance}}</td><td>{{x.expected_attendance}}</td><td>{{x.fill_rate}}%</td></tr>{% endfor %}</tbody></table></div></div>
+
+<div class="card p-4"><h4>Event Type Comparison</h4>
+<div class="table-responsive"><table class="table"><thead><tr><th>Type</th><th>Events</th><th>Avg Attendance</th><th>Avg Expected</th></tr></thead>
+<tbody>{% for x in types %}<tr><td>{{x.event_type}}</td><td>{{x.events}}</td><td>{{"%.0f"|format(x.avg_attendance)}}</td><td>{{"%.0f"|format(x.avg_expected)}}</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

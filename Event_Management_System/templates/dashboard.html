@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero mb-4">
+  <div>
+    <div class="eyebrow">CAMPUS INTELLIGENCE</div>
+    <h1>Smart Campus Resource & Event Intelligence</h1>
+    <p>Monitor participation, events and campus resource utilization from one place.</p>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+{% for label, value, icon in [('Total Events',stats.events,'📅'),('Students',stats.students,'👥'),('Resources',stats.resources,'🏫'),('Registrations',stats.registrations,'🎟️')] %}
+<div class="col-md-3">
+  <div class="card stat-card"><div class="icon">{{ icon }}</div><div class="small text-muted">{{ label }}</div><div class="stat">{{ value }}</div></div>
+</div>
+{% endfor %}
+</div>
+
+<div class="row g-4">
+<div class="col-lg-7">
+  <div class="card p-4">
+    <div class="section-title"><h4>Upcoming Events</h4><a href="{{ url_for('events') }}">Manage →</a></div>
+    {% for e in upcoming %}
+    <div class="event-row">
+      <div><strong>{{ e.title }}</strong><div class="muted">{{ e.event_type }} · {{ e.event_date }} · {{ e.resource_name or 'No venue' }}</div></div>
+      <span class="badge-soft">{{ e.registrations }} registered</span>
+    </div>
+    {% else %}<p class="text-muted">No upcoming events.</p>{% endfor %}
+  </div>
+</div>
+<div class="col-lg-5">
+  <div class="card p-4">
+    <h4>Event Type Performance</h4>
+    {% for x in event_types %}
+    <div class="mb-3">
+      <div class="d-flex justify-content-between"><span>{{ x.event_type }}</span><b>{{ x.attendance }}</b></div>
+      <div class="progress"><div class="progress-bar" style="width: {{ [x.attendance / 5, 100] | min }}%"></div></div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+{% endblock %}
